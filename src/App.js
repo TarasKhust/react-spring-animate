@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import logo from './logo.svg';
-import Routes from './Routes.js';
+// import Routes from './Routes.js';
 import Nav from './Nav';
-import './App.css';
 import Checkout from './Checkout';
+import Modal from './Modal';
+import Accordion from './Accordion';
+import './App.css';
+import Waypoints from './Waypoints';
 
 const App = () => {
 	const [isNavOpen, setNavOpen] = useState(false);
@@ -16,7 +19,7 @@ const App = () => {
 	const fade = useSpring({
 				from: { opacity: 0 }, opacity: 1,
 			},
-	);
+);
 	return (
 			<animated.div className="App" style={fade}>
 				<header className="App-header">
@@ -27,7 +30,10 @@ const App = () => {
 					{/*<Nav style={navAnimation}/>*/}
 				</header>
 				<main>
-					<Routes/>
+					{/*<Routes/>*/}
+					<Modal/>
+					<Accordion/>
+					<Waypoints/>
 					<Checkout isOpen={isNavOpen}/>
 				</main>
 			</animated.div>
