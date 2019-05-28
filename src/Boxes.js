@@ -1,9 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { animated, useTrail, config, useSpring, useChain, useTransition } from 'react-spring';
 
-const items = [0.5, 0.3, 0.2, 0.7, 1, 3, 32, 55, 66, 88];
-
-const Boxes = () => {
+const items = [0.5, 0.3, 0.2, 0.7, 1, 3, 32, 55, 66, 88], Boxes = () => {
 	const [on, toggle] = useState(false);
 
 	const springRef = useRef();
@@ -15,15 +13,21 @@ const Boxes = () => {
 
 	const transitionRef = useRef();
 
-	const transition = useTransition(on ? items : [], item => item,{
+	const transition = useTransition(on ? items : [], item => item, {
 		ref: transitionRef,
 		trail: 400 / items.length,
-		from: {opacity: 0,
-			transform: 'scale(0)'},
-		enter: {opacity: 1,
-			transform: 'scale(1)'},
-		leave: {opacity: 0,
-			transform: 'scale(0)'},
+		from: {
+			opacity: 0,
+			transform: 'scale(0)'
+		},
+		enter: {
+			opacity: 1,
+			transform: 'scale(1)'
+		},
+		leave: {
+			opacity: 0,
+			transform: 'scale(0)'
+		},
 		config: config.gentle
 	});
 	// With Trail
@@ -49,14 +53,15 @@ const Boxes = () => {
 	// 	));
 	// };
 
-	useChain(on ? [springRef, transitionRef] : [transitionRef, springRef] );
+	useChain(on ? [springRef, transitionRef] : [transitionRef, springRef]);
 
 	return (
 			<div className='full-height'>
-			<animated.div style={{ width: size, height: size}} className="boxes-grid-two" onClick={() => toggle(!on)}>
-				{/*<button onClick={() => toggle(!on)}>Click</button>*/}
-				{render()}
-			</animated.div>
+				<animated.div style={{ width: size, height: size }}
+				              className="boxes-grid-two" onClick={() => toggle(!on)}>
+					{/*<button onClick={() => toggle(!on)}>Click</button>*/}
+					{render()}
+				</animated.div>
 			</div>
 	);
 };
